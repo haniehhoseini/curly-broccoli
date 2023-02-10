@@ -43,6 +43,12 @@ model T_Product{
   isVisible   Boolean  @default(false)
   CreateDate  DateTime @default(now())
   Quantity    Int      @default(0)
-  CategoryId  Int
-  T_Category  T_Category @relation(fields: [CategoryId], references: [Id])
+  ProductCategoryId  Int
+  T_ProductCategory  T_ProductCategory @relation(fields: [ProductCategoryId], references: [Id])
 } 
+
+model T_ProductCategory{
+  Id          Int      @id @default(autoincrement())
+  Title       String
+  T_Product   T_Product[]
+}
