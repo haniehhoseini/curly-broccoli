@@ -111,3 +111,10 @@ model T_Order{
   T_Cart      T_Cart   @relation(fields: [CartId], references: [Id])
   T_OrderStatus T_OrderStatus @relation(fields: [OrderStatusId], references: [Id])
 }
+
+model T_OrderStatus{
+  Id          Int      @id @default(autoincrement())
+  Title       String
+  Description String?
+  T_Order     T_Order[]
+}
