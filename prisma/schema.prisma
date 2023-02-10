@@ -54,6 +54,7 @@ model T_Product {
   T_Price                   T_Price[]
   T_UserCategorizedProduct  T_UserCategorizedProduct[]
   T_RemindMeForAvailability T_RemindMeForAvailability[]
+  T_CartProduct             T_CartProduct[]
 }
 
 model T_ProductCategory {
@@ -63,11 +64,12 @@ model T_ProductCategory {
 }
 
 model T_Price {
-  Id         Int       @id @default(autoincrement())
-  ProductId  Int
-  Price      Int
-  CreateDate DateTime  @default(now())
-  T_Product  T_Product @relation(fields: [ProductId], references: [Id])
+  Id            Int             @id @default(autoincrement())
+  ProductId     Int
+  Price         Int
+  CreateDate    DateTime        @default(now())
+  T_Product     T_Product       @relation(fields: [ProductId], references: [Id])
+  T_CartProduct T_CartProduct[]
 }
 
 model T_CategoryPerUser {
@@ -123,10 +125,23 @@ model T_OrderStatus {
 }
 
 model T_Cart {
-  Id          Int       @id @default(autoincrement())
-  UserId      Int
-  CreateDate  DateTime  @default(now())
-  isFinilized Boolean   @default(false)
-  T_User      T_User    @relation(fields: [UserId], references: [Id])
-  T_Order     T_Order[]
+  Id            Int             @id @default(autoincrement())
+  UserId        Int
+  CreateDate    DateTime        @default(now())
+  isFinilized   Boolean         @default(false)
+  T_User        T_User          @relation(fields: [UserId], references: [Id])
+  T_Order       T_Order[]
+  T_CartProduct T_CartProduct[]
+}
+
+model T_CartProduct {
+  Id        Int       @id @default(autoincrement())
+  CartId    Int
+  ProductId Int
+  Quantity  Int       @default(1)
+  PriceId   Int
+  Rate      Int?
+  T_Cart    T_Cart    @relation(fields: [CartId], references: [Id])
+  T_Product T_Product @relation(fields: [ProductId], references: [Id])
+  T_Price   T_Price   @relation(fields: [PriceId], references: [Id])
 }
