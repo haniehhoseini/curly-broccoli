@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cookieParser = require("cookie-parser");
+const { prisma } = require("./prisma");
 
 // Load environment variables from .env file
 require("dotenv").config();
