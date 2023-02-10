@@ -96,3 +96,18 @@ model T_RemindMeForAvailability{
   T_User      T_User   @relation(fields: [UserId], references: [Id])
   T_Product   T_Product @relation(fields: [ProductId], references: [Id])
 }
+
+model T_Order{
+  Id          Int      @id @default(autoincrement())
+  UserId      Int
+  CartId      Int
+  CreateDate  DateTime @default(now())
+  UpdateDate  DateTime?
+  OrderStatusId Int
+  SupportUserId Int?
+  isPaid      Boolean  @default(false)
+  isSOSCancel Boolean  @default(false)
+  T_User      T_User   @relation(fields: [UserId, SupportUserId], references: [Id])
+  T_Cart      T_Cart   @relation(fields: [CartId], references: [Id])
+  T_OrderStatus T_OrderStatus @relation(fields: [OrderStatusId], references: [Id])
+}
