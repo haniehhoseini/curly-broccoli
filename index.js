@@ -8,7 +8,7 @@ require("dotenv").config();
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello Worlds!");
 });
 
 app.listen(process.env.PORT, () => {
