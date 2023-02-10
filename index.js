@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
+const { prisma } = require("./prisma");
 
 // Load environment variables from .env file
 require("dotenv").config();
