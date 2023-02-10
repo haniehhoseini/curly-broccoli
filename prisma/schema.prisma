@@ -45,10 +45,19 @@ model T_Product{
   Quantity    Int      @default(0)
   ProductCategoryId  Int
   T_ProductCategory  T_ProductCategory @relation(fields: [ProductCategoryId], references: [Id])
+  T_Price     T_Price[]
 } 
 
 model T_ProductCategory{
   Id          Int      @id @default(autoincrement())
   Title       String
   T_Product   T_Product[]
+}
+
+model T_Price{
+  Id          Int      @id @default(autoincrement())
+  ProductId   Int
+  Price       Int
+  CreateDate  DateTime @default(now())
+  T_Product   T_Product @relation(fields: [ProductId], references: [Id])
 }
