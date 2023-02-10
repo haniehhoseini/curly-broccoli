@@ -19,6 +19,7 @@ model T_User {
   T_Role      T_Role   @relation(fields: [RoleId], references: [Id])
   T_Profile   T_Profile[]
   T_CategoryPerUser T_CategoryPerUser[]
+  T_RemindMeForAvailability T_RemindMeForAvailability[]
 }
 
 model T_Profile{
@@ -50,6 +51,7 @@ model T_Product{
   T_ProductCategory  T_ProductCategory @relation(fields: [ProductCategoryId], references: [Id])
   T_Price     T_Price[]
   T_UserCategorizedProduct T_UserCategorizedProduct[]
+  T_RemindMeForAvailability T_RemindMeForAvailability[]
 } 
 
 model T_ProductCategory{
@@ -82,5 +84,15 @@ model T_UserCategorizedProduct{
   ProductId   Int
   CreateDate  DateTime @default(now())
   T_CategoryPerUser T_CategoryPerUser @relation(fields: [CategoryPerUserId], references: [Id])
+  T_Product   T_Product @relation(fields: [ProductId], references: [Id])
+}
+
+model T_RemindMeForAvailability{
+  Id          Int      @id @default(autoincrement())
+  UserId      Int
+  ProductId   Int
+  isValid     Boolean  @default(true)
+  CreateDate  DateTime @default(now())
+  T_User      T_User   @relation(fields: [UserId], references: [Id])
   T_Product   T_Product @relation(fields: [ProductId], references: [Id])
 }
