@@ -1,11 +1,20 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
+datasource storeDB {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+
+model T_User {
+  Id          Int      @id @default(autoincrement())
+  Username    String   @unique
+  Password    String
+  isVerified  Boolean  @default(false)
+  RoleId      Int
+  VerifyToken String?
+  CreateDate  DateTime @default(now())
+  T_Role      T_Role   @relation(fields: [RoleId], references: [Id])
 }
