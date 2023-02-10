@@ -34,3 +34,15 @@ model T_Role {
   Title String
   T_User T_User[]
 }
+
+model T_Product{
+  Id          Int      @id @default(autoincrement())
+  Title       String
+  Description String?
+  CoverImage  String?
+  isVisible   Boolean  @default(false)
+  CreateDate  DateTime @default(now())
+  Quantity    Int      @default(0)
+  CategoryId  Int
+  T_Category  T_Category @relation(fields: [CategoryId], references: [Id])
+} 
