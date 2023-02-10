@@ -28,3 +28,9 @@ model T_Profile{
   Sex Boolean?
   Birthday DateTime?
 }
+
+model T_Role {
+  Id    Int    @id @default(autoincrement())
+  Title String
+  T_User T_User[]
+}
