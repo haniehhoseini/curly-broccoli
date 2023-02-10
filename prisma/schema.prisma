@@ -49,6 +49,7 @@ model T_Product{
   ProductCategoryId  Int
   T_ProductCategory  T_ProductCategory @relation(fields: [ProductCategoryId], references: [Id])
   T_Price     T_Price[]
+  T_UserCategorizedProduct T_UserCategorizedProduct[]
 } 
 
 model T_ProductCategory{
@@ -72,4 +73,14 @@ model T_CategoryPerUser{
   Description String?
   isRemoved   Boolean  @default(false)
   T_User      T_User   @relation(fields: [UserId], references: [Id])
+  T_UserCategorizedProduct T_UserCategorizedProduct[]
+}
+
+model T_UserCategorizedProduct{
+  Id          Int      @id @default(autoincrement())
+  CategoryPerUserId Int
+  ProductId   Int
+  CreateDate  DateTime @default(now())
+  T_CategoryPerUser T_CategoryPerUser @relation(fields: [CategoryPerUserId], references: [Id])
+  T_Product   T_Product @relation(fields: [ProductId], references: [Id])
 }
