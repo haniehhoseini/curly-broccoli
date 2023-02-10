@@ -18,3 +18,13 @@ model T_User {
   CreateDate  DateTime @default(now())
   T_Role      T_Role   @relation(fields: [RoleId], references: [Id])
 }
+
+model T_Profile{
+  Id          Int      @id @default(autoincrement())
+  UserId      Int
+  PhotoAddress String?
+  FirstName String?
+  LastName String?
+  Sex Boolean?
+  Birthday DateTime?
+}
