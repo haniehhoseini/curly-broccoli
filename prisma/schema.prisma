@@ -17,6 +17,8 @@ model T_User {
   VerifyToken String?
   CreateDate  DateTime @default(now())
   T_Role      T_Role   @relation(fields: [RoleId], references: [Id])
+  T_Profile   T_Profile[]
+  T_CategoryPerUser T_CategoryPerUser[]
 }
 
 model T_Profile{
@@ -27,6 +29,7 @@ model T_Profile{
   LastName String?
   Sex Boolean?
   Birthday DateTime?
+  T_User      T_User   @relation(fields: [UserId], references: [Id])
 }
 
 model T_Role {
@@ -60,4 +63,13 @@ model T_Price{
   Price       Int
   CreateDate  DateTime @default(now())
   T_Product   T_Product @relation(fields: [ProductId], references: [Id])
+}
+
+model T_CategoryPerUser{
+  Id          Int      @id @default(autoincrement())
+  UserId      Int
+  Title       String
+  Description String?
+  isRemoved   Boolean  @default(false)
+  T_User      T_User   @relation(fields: [UserId], references: [Id])
 }
