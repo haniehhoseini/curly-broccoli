@@ -16,9 +16,7 @@ module.exports = async (req, res) => {
     }
 
     if (user) {
-      const password = await bcrypt.hash(unHashedPassword, 10);
-
-      if (password === user.Password) {
+      if (await bcrypt.compare(unHashedPassword, user.Password)) {
         return res.json({
           message: "Login successful",
           token: jwt.sign(
