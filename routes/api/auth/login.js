@@ -6,14 +6,19 @@ module.exports = async (req, res) => {
   const { email, password: unHashedPassword } = req.body || {};
 
   if (email && unHashedPassword) {
-    const user = await prisma.t_User.findUnique({
-      where: { email: email },
-    });
+    let user;
+    try {
+      user = await prisma.t_User.findUnique({
+        where: { Username: email },
+      });
+    } catch (e) {
+      console.log(e);
+    }
 
     if (user) {
       const password = await bcrypt.hash(unHashedPassword, 10);
 
-      if (password === user.password) {
+      if (password === user.Password) {
         return res.json({
           message: "Login successful",
           token: jwt.sign(
