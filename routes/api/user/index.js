@@ -27,4 +27,6 @@ router.put(
   require("./profile"),
 );
 
+router.post("/add-category", Authorization([ROLES.User]), require("./addCategory"));
+
 module.exports = router;
