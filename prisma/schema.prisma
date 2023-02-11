@@ -142,4 +142,6 @@ model T_CartProduct {
   T_Cart    T_Cart    @relation(fields: [CartId], references: [Id])
   T_Product T_Product @relation(fields: [ProductId], references: [Id])
   T_Price   T_Price   @relation(fields: [PriceId], references: [Id])
+
+  @@unique([CartId, ProductId], name: "T_CartProduct_CartId_ProductId_key")
 }
