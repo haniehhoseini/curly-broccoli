@@ -1,0 +1,1 @@
+exports.ROLES = {Admin: "Admin", User: "User"};

@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
           token: jwt.sign(
             {
               userId: user.Id,
-              roleId: user.RoleId,
+              role: user.Role,
               isVerified: user.isVerified,
               _date: new Date().toISOString(),
             },
