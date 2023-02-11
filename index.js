@@ -7,6 +7,8 @@ const { prisma } = require("./prisma");
 require("dotenv").config();
 
 app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Hello Worlds!");
