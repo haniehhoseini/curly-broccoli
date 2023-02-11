@@ -5,5 +5,6 @@ const { ROLES } = require("../../../constants/Auth");
 const router = Router();
 
 router.get("/", require("./getProducts"));
+router.post("/remind-me", Authorization([ROLES.User]), require("./remindMe.js"));
 
 module.exports = router;
