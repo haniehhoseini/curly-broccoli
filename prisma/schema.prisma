@@ -25,7 +25,7 @@ model T_User {
 
 model T_Profile {
   Id           Int       @id @default(autoincrement())
-  UserId       Int
+  UserId       Int       @unique
   PhotoAddress String?
   FirstName    String?
   LastName     String?
