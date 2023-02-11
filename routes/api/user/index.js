@@ -33,6 +33,11 @@ router.post(
   Authorization([ROLES.User]),
   require("./editCategory"),
 );
+router.delete(
+  "/delete-category",
+  Authorization([ROLES.User]),
+  require("./deleteCategory"),
+);
 
 
 module.exports = router;
