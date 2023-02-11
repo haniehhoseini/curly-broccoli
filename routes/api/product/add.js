@@ -20,6 +20,6 @@ module.exports = async (req, res) => {
     else return res.status(500).json({ message: "Product add failed" });
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ message: "Category add failed" });
+    return res.status(500).json({ message: "Product add failed" });
   }
 };

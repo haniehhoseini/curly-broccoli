@@ -32,6 +32,12 @@ router.post(
   require("./add"),
 );
 router.post(
+  "/",
+  Authorization([ROLES.Admin]),
+  upload.single("productPhoto"),
+  require("./edit"),
+);
+router.post(
   "/remind-me",
   Authorization([ROLES.User]),
   require("./remindMe.js"),
