@@ -28,5 +28,11 @@ router.put(
 );
 
 router.post("/add-category", Authorization([ROLES.User]), require("./addCategory"));
+router.post(
+  "/edit-category",
+  Authorization([ROLES.User]),
+  require("./editCategory"),
+);
+
 
 module.exports = router;
