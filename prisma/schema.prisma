@@ -118,6 +118,7 @@ model T_Order {
 model T_OrderStatus {
   Id          Int       @id @default(autoincrement())
   Title       String
+  FaTitle     String
   Description String?
   T_Order     T_Order[]
 }

@@ -10,4 +10,10 @@ router.post(
   require("./addToCart"),
 );
 
+router.post(
+  "/submit-cart",
+  Authorization([ROLES.Admin, ROLES.User]),
+  require("./submitCart"),
+);
+
 module.exports = router;
