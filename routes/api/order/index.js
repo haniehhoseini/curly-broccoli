@@ -4,6 +4,7 @@ const { ROLES } = require("../../../constants/Auth");
 
 const router = Router();
 
-router.get("/pay", Authorization([ROLES.Admin, ROLES.User]), require("./pay"));
+router.post("/pay", Authorization([ROLES.Admin, ROLES.User]), require("./pay"));
+router.post("/cancel", Authorization([ROLES.Admin, ROLES.User]), require("./cancel"));
 
 module.exports = router;
