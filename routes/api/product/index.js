@@ -25,22 +25,28 @@ const upload = multer({ storage: storage });
 const router = Router();
 
 router.get("/", require("./getAll"));
+
 router.post(
   "/",
   Authorization([ROLES.Admin]),
   upload.single("productPhoto"),
   require("./add"),
 );
+
 router.post(
   "/",
   Authorization([ROLES.Admin]),
   upload.single("productPhoto"),
   require("./edit"),
 );
+
 router.post(
   "/remind-me",
   Authorization([ROLES.User]),
   require("./remindMe.js"),
 );
+
+router.post("/edit-price", Authorization([ROLES.Admin]), require("./editPrice"));
+
 
 module.exports = router;
