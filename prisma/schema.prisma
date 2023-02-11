@@ -12,10 +12,9 @@ model T_User {
   Username                  String                      @unique
   Password                  String
   isVerified                Boolean                     @default(false)
-  RoleId                    Int
+  Role                      Role                        @default(User)
   VerifyToken               String?
   CreateDate                DateTime                    @default(now())
-  T_Role                    T_Role                      @relation(fields: [RoleId], references: [Id])
   T_Profile                 T_Profile[]
   T_CategoryPerUser         T_CategoryPerUser[]
   T_RemindMeForAvailability T_RemindMeForAvailability[]
@@ -35,10 +34,9 @@ model T_Profile {
   T_User       T_User    @relation(fields: [UserId], references: [Id])
 }
 
-model T_Role {
-  Id     Int      @id @default(autoincrement())
-  Title  String
-  T_User T_User[]
+enum Role {
+  Admin
+  User
 }
 
 model T_Product {
